@@ -4,8 +4,10 @@
 
 import { createFileRoute } from "@tanstack/react-router";
 import { RingsCollection } from "@/components/views/RingCollection";
+import { getRings } from "@/lib/products";
 
 export const Route = createFileRoute("/rings")({
+  loader: () => getRings(),
   head: () => ({
     meta: [
       { title: "Rings — K.K Jewelers 2026 Collection" },

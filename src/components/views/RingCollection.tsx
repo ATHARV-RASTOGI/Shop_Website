@@ -8,11 +8,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
-import { RINGS } from "@/resources/Rings_desc";
 import { ReactLenis } from 'lenis/react';
 import { useReveal } from "@/hooks/use-reveal";
 import { EnquireModal } from "@/components/ui/EnquireModal";
 import { StylishCarousel } from "@/components/ui/StylishCarousel";
+import { Route } from "@/routes/rings";
 
 
 
@@ -90,7 +90,7 @@ function WordReveal({
 
 
 // ─── Single ring card ─────────────────────────────────────────────────────────
-function RingCard({ ring, index }: { ring: typeof RINGS[0]; index: number }) {
+function RingCard({ ring, index, total }: { ring: any; index: number; total: number }) {
   const isEven = index % 2 === 0;
   const [isSaved, setIsSaved] = useState(false);
   const [enquireOpen, setEnquireOpen] = useState(false);
@@ -152,13 +152,13 @@ function RingCard({ ring, index }: { ring: typeof RINGS[0]; index: number }) {
             <ChevronLeft className="w-3 h-3 text-foreground/50" />
           </a>
           <span className="text-[11px] tracking-[0.28em] text-foreground/35 uppercase">
-            {String(index + 1).padStart(2, "0")} / {String(RINGS.length).padStart(2, "0")}
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
           <a
-            href={index < RINGS.length - 1 ? `#ring-${index + 1}` : undefined}
+            href={index < total - 1 ? `#ring-${index + 1}` : undefined}
             className={cn(
               "p-2 rounded-full transition-colors hover:bg-foreground/5",
-              index === RINGS.length - 1 && "opacity-30 cursor-default pointer-events-none"
+              index === total - 1 && "opacity-30 cursor-default pointer-events-none"
             )}
             aria-label="Next piece"
           >
@@ -182,14 +182,10 @@ function RingCard({ ring, index }: { ring: typeof RINGS[0]; index: number }) {
           className="text-[20px] leading-[1.8] text-foreground/70 mb-10 max-w-md"
         />
 
-        <div className="flex flex-col gap-2 mb-10 text-[12px] text-foreground/50">
+        <div className="mb-10 text-[12px] text-foreground/50">
           <div className="flex items-start justify-center gap-4 text-left w-full max-w-[200px] mx-auto">
             <span className="text-foreground/35 uppercase tracking-widest text-[10px] w-16 flex-shrink-0">Material</span>
             <span className="flex-1 text-foreground/70">{ring.material}</span>
-          </div>
-          <div className="flex items-start justify-center gap-4 text-left w-full max-w-[200px] mx-auto">
-            <span className="text-foreground/35 uppercase tracking-widest text-[10px] w-16 flex-shrink-0">Edition</span>
-            <span className="flex-1 text-foreground/70">{ring.edition}</span>
           </div>
         </div>
 
@@ -220,6 +216,7 @@ function RingCard({ ring, index }: { ring: typeof RINGS[0]; index: number }) {
 // ─── Main export — used by src/routes/rings.tsx ───────────────────────────────
 export function RingsCollection() {
   useReveal();
+  const RINGS = Route.useLoaderData();
 
   return (
     <ReactLenis root options={{ lerp: 0.08, duration: 1.5, smoothWheel: true }}>
@@ -238,11 +235,11 @@ export function RingsCollection() {
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <p className="text-[15px] text-foreground/55 leading-relaxed max-w-md">
-              Ten pieces. Each exists in a numbered edition — some as few as six.
+              {RINGS.length} pieces. Each exists in a numbered edition — some as few as six.
               Every angle photographed. Every material disclosed.
             </p>
             <span className="text-[11px] tracking-[0.22em] uppercase text-foreground/35">
-              10 pieces · Paris, 2026
+              {RINGS.length} pieces · Paris, 2026
             </span>
           </div>
         </section>
@@ -253,7 +250,7 @@ export function RingsCollection() {
         <div className="flex flex-col">
           {RINGS.map((ring, i) => (
             <div key={ring.id}>
-              <RingCard ring={ring} index={i} />
+              <RingCard ring={ring} index={i} total={RINGS.length} />
               {i < RINGS.length - 1 && <div className="w-full h-px bg-foreground/8" />}
             </div>
           ))}

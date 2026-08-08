@@ -3,8 +3,10 @@
 
 import { createFileRoute } from "@tanstack/react-router";
 import { NecklaceCollection } from "@/components/views/NecklaceCollection";
+import { getNecklaces } from "@/lib/products";
 
 export const Route = createFileRoute("/necklace")({
+  loader: () => getNecklaces(),
   head: () => ({
     meta: [
       { title: "Necklaces — K.K Jewelers 2026 Collection" },

@@ -8,18 +8,18 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
-import { NECKLACES } from "@/resources/Necklace_desc";
 import { useReveal } from "@/hooks/use-reveal";
 import { EnquireModal } from "@/components/ui/EnquireModal";
 import { StylishCarousel } from "@/components/ui/StylishCarousel";
 import { ReactLenis } from "lenis/react";
+import { Route } from "@/routes/necklace";
 
-function NecklaceCard({ necklace, index }: { necklace: typeof NECKLACES[0]; index: number }) {
+function NecklaceCard({ necklace, index, total }: { necklace: any; index: number; total: number }) {
   const isEven = index % 2 === 0;
   const [isSaved, setIsSaved] = useState(false);
   const [enquireOpen, setEnquireOpen] = useState(false);
  
-  const carouselItems = necklace.sliderImages.map(img => ({
+  const carouselItems = necklace.sliderImages.map((img: { url: string; alt: string; title: string }) => ({
     src: img.url,
     alt: img.alt,
     title: img.title
@@ -81,13 +81,13 @@ function NecklaceCard({ necklace, index }: { necklace: typeof NECKLACES[0]; inde
             <ChevronLeft className="w-3 h-3 text-foreground/50" />
           </a>
           <span className="text-[11px] tracking-[0.28em] text-foreground/35 uppercase block">
-            {String(index + 1).padStart(2, "0")} / {String(NECKLACES.length).padStart(2, "0")}
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
           <a
-            href={index < NECKLACES.length - 1 ? `#necklace-${index + 1}` : undefined}
+            href={index < total - 1 ? `#necklace-${index + 1}` : undefined}
             className={cn(
               "p-2 rounded-full transition-colors hover:bg-foreground/5",
-              index === NECKLACES.length - 1 && "opacity-30 cursor-default pointer-events-none"
+              index === total - 1 && "opacity-30 cursor-default pointer-events-none"
             )}
             aria-label="Next piece"
           >
@@ -110,24 +110,14 @@ function NecklaceCard({ necklace, index }: { necklace: typeof NECKLACES[0]; inde
           {necklace.description}
         </p>
  
-        <div className="flex flex-col gap-2 mb-8 text-[11px] text-foreground/45">
+        <div className="mb-8 text-[11px] text-foreground/45">
           <div className="flex items-start justify-center gap-4 text-left w-full max-w-[200px] mx-auto">
             <span className="text-foreground/30 uppercase tracking-widest text-[9px] w-16 flex-shrink-0">Material</span>
             <span className="flex-1 text-foreground/65">{necklace.material}</span>
           </div>
-          <div className="flex items-start justify-center gap-4 text-left w-full max-w-[200px] mx-auto">
-            <span className="text-foreground/30 uppercase tracking-widest text-[9px] w-16 flex-shrink-0">Edition</span>
-            <span className="flex-1 text-foreground/65">{necklace.edition}</span>
-          </div>
         </div>
  
         <div className="flex items-center justify-center gap-5">
-          <span
-            className="text-2xl font-light text-foreground tracking-tight"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-          >
-            {necklace.price}
-          </span>
           <button
             onClick={() => setEnquireOpen(true)}
             className="px-6 py-2.5 text-[10px] tracking-[0.22em] uppercase bg-foreground text-background hover:bg-foreground/85 transition-colors duration-200 rounded-full"
@@ -156,6 +146,7 @@ function NecklaceCard({ necklace, index }: { necklace: typeof NECKLACES[0]; inde
 // ─── Main export ──────────────────────────────────────────────────────────────
 export function NecklaceCollection() {
   useReveal();
+  const NECKLACES = Route.useLoaderData();
 
   return (
     <ReactLenis root options={{ lerp: 0.08, duration: 1.5, smoothWheel: true }}>
@@ -173,11 +164,11 @@ export function NecklaceCollection() {
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <p className="text-[15px] text-foreground/55 leading-relaxed max-w-md">
-              Seven pieces. Chains, pendants, rivières, and collars — each made once, or close to it.
+              {NECKLACES.length} pieces. Chains, pendants, rivières, and collars — each made once, or close to it.
               Every detail photographed. Every material disclosed.
             </p>
             <span className="text-[11px] tracking-[0.22em] uppercase text-foreground/35">
-              7 pieces · Paris, 2026
+              {NECKLACES.length} pieces · Paris, 2026
             </span>
           </div>
         </section>
@@ -188,7 +179,7 @@ export function NecklaceCollection() {
         <div className="flex flex-col gap-6 bg-secondary p-6">
           {NECKLACES.map((necklace, i) => (
             <div key={necklace.id} className="rounded-2xl overflow-hidden">
-              <NecklaceCard necklace={necklace} index={i} />
+              <NecklaceCard necklace={necklace} index={i} total={NECKLACES.length} />
             </div>
           ))}
         </div>

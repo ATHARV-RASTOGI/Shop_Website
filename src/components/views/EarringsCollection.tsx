@@ -5,12 +5,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
-import { EARRINGS } from "@/resources/Earring_desc";
 import { ReactLenis } from 'lenis/react';
 import { images } from "@/lib/images";
 import { useReveal } from "@/hooks/use-reveal";
 import { EnquireModal } from "@/components/ui/EnquireModal";
 import { StylishCarousel } from "@/components/ui/StylishCarousel";
+import { Route } from "@/routes/earings";
 
 // ─── ScrollParagraph — scroll-triggered word-by-word reveal ──────────────────
 
@@ -80,7 +80,7 @@ function WordReveal({
 
 
 // ─── Single earring card ─────────────────────────────────────────────────────
-function EarringCard({ earring, index }: { earring: typeof EARRINGS[0]; index: number }) {
+function EarringCard({ earring, index, total }: { earring: any; index: number; total: number }) {
   const isEven = index % 2 === 0;
   const [isSaved, setIsSaved] = useState(false);
   const [enquireOpen, setEnquireOpen] = useState(false);
@@ -141,13 +141,13 @@ function EarringCard({ earring, index }: { earring: typeof EARRINGS[0]; index: n
             <ChevronLeft className="w-3 h-3 text-foreground/50" />
           </a>
           <span className="text-[11px] tracking-[0.28em] text-foreground/35 uppercase block">
-            {String(index + 1).padStart(2, "0")} / {String(EARRINGS.length).padStart(2, "0")}
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
           <a
-            href={index < EARRINGS.length - 1 ? `#earring-${index + 1}` : undefined}
+            href={index < total - 1 ? `#earring-${index + 1}` : undefined}
             className={cn(
               "p-2 rounded-full transition-colors hover:bg-foreground/5",
-              index === EARRINGS.length - 1 && "opacity-30 cursor-default pointer-events-none"
+              index === total - 1 && "opacity-30 cursor-default pointer-events-none"
             )}
             aria-label="Next piece"
           >
@@ -171,24 +171,14 @@ function EarringCard({ earring, index }: { earring: typeof EARRINGS[0]; index: n
           className="text-[15px] leading-[1.8] text-foreground/70 mb-10 max-w-md"
         />
 
-        <div className="flex flex-col gap-2 mb-10 text-[12px] text-foreground/50">
+        <div className="mb-10 text-[12px] text-foreground/50">
           <div className="flex items-start justify-center gap-4 text-left w-full max-w-[200px] mx-auto">
             <span className="text-foreground/35 uppercase tracking-widest text-[10px] w-16 flex-shrink-0">Material</span>
             <span className="flex-1 text-foreground/70">{earring.material}</span>
           </div>
-          <div className="flex items-start justify-center gap-4 text-left w-full max-w-[200px] mx-auto">
-            <span className="text-foreground/35 uppercase tracking-widest text-[10px] w-16 flex-shrink-0">Edition</span>
-            <span className="flex-1 text-foreground/70">{earring.edition}</span>
-          </div>
         </div>
 
         <div className="flex items-center justify-center gap-6">
-          <span
-            className="text-2xl font-light text-foreground tracking-tight"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-          >
-            {earring.price}
-          </span>
           <button
             onClick={() => setEnquireOpen(true)}
             className="px-7 py-3 text-[11px] tracking-[0.22em] uppercase bg-foreground text-background hover:bg-foreground/85 transition-colors duration-200 rounded-full"
@@ -216,6 +206,7 @@ function EarringCard({ earring, index }: { earring: typeof EARRINGS[0]; index: n
 // ─── Main export — used by src/routes/earrings.tsx ───────────────────────────
 export function EarringsCollection() {
   useReveal();
+  const EARRINGS = Route.useLoaderData();
 
   return (
     <ReactLenis root options={{ lerp: 0.08, duration: 1.5, smoothWheel: true }}>
@@ -233,11 +224,11 @@ export function EarringsCollection() {
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <p className="text-[15px] text-foreground/55 leading-relaxed max-w-md">
-              Eight pairs. Each exists in a numbered edition — worn once, remembered always.
+              {EARRINGS.length} pairs. Each exists in a numbered edition — worn once, remembered always.
               Every angle photographed. Every material disclosed.
             </p>
             <span className="text-[11px] tracking-[0.22em] uppercase text-foreground/35">
-              8 pieces · Paris, 2026
+              {EARRINGS.length} pieces · Paris, 2026
             </span>
           </div>
         </section>
@@ -248,7 +239,7 @@ export function EarringsCollection() {
         <div className="flex flex-col">
           {EARRINGS.map((earring, i) => (
             <div key={earring.id}>
-              <EarringCard earring={earring} index={i} />
+              <EarringCard earring={earring} index={i} total={EARRINGS.length} />
               {i < EARRINGS.length - 1 && <div className="w-full h-px bg-foreground/8" />}
             </div>
           ))}
