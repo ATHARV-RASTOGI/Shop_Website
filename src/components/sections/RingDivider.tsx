@@ -132,25 +132,21 @@ function MarqueeRow({ children, baseVelocity = 4, direction = 1, className = "" 
 const topItems = [
   "K.K Jewelers",
   "✦",
-  "100% HALLMARK GOLD",
+  "HALLMARK GOLD",
   "✦",
   "22 K Gold",
   "✦",
   "Rings",
   "✦",
-  "Wedding sets",
-  "✦",
+  "Earings",
+   "✦",
+  "Necklaces",
+  "✦"
 ];
 
 // Row 2 — smaller descriptors in lighter weight, opposite direction
 const bottomItems = [
-  "Ruby",
-  "◆",
-  "Emerald Cut",
-  "◆",
-  "CUSTOM DIAMOND DESIGNS",
-  "◆",
-  "READY STOCK",
+  "DIAMOND DESIGNS",
   "◆",
   "Made to Order",
   "◆",

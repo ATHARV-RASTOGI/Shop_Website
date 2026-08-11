@@ -4,8 +4,8 @@ export const STORE_LOCATION = {
   lat: 27.391009853631893,
   lng: 79.57995851210842,
   address: "2/207 Nehru Road, 209625 Farrukhabad, Uttar Pradesh, India",
-  phone: "+91 789 456 1230",
-  email: "hello@tmpl.digital",
+  phone: import.meta.env.VITE_STORE_PHONE || "+91 7780 954 617",
+  email: import.meta.env.VITE_STORE_EMAIL || "[EMAIL_ADDRESS]",
   hours: [
     { days: "Monday – Saturday", time: "10:30 AM – 7:30 PM" },
     { days: "Sunday", time: "By Appointment" },

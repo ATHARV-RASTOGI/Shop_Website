@@ -52,3 +52,4 @@ Desktop.ini
 *.sln
 *.sw?
 .env
+.env.local

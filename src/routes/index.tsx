@@ -11,9 +11,15 @@ import { Footer } from "@/components/layout/Footer";
 import React, { Suspense } from "react";
 import { STORE_LOCATION } from "@/lib/constants";
 import { ExternalLink } from "lucide-react";
+import { getFeatured } from "@/lib/products";
+import heroImg from "@/assets/hero-model.webp";
 const StoreMap = React.lazy(() => import("@/components/ui/StoreMap"));
 
 export const Route = createFileRoute("/")({
+  loader: async () => {
+    const featured = await getFeatured();
+    return { featured };
+  },
   head: () => ({
     meta: [
       { title: "K.K Jewelers — 2026 Collection, made in Paris" },
@@ -23,11 +29,11 @@ export const Route = createFileRoute("/")({
           "A boutique Parisian jewelry house. The 2026 K.K Jewelers edit: sculptural gold, warm palettes, and understated luxury — hand-set in our atelier.",
       },
       { property: "og:title", content: "K.K Jewelers — 2026 Collection" },
-      {
-        property: "og:description",
-        content: "Sculptural fine jewelry, made to order in Paris. Discover the 2026 edit.",
-      },
+      { property: "og:description", content: "Sculptural fine jewelry, made to order in Paris. Discover the 2026 edit." },
       { property: "og:type", content: "website" },
+    ],
+    links: [
+      { rel: "preload", as: "image", href: heroImg, fetchPriority: "high" },
     ],
   }),
   component: Home,
@@ -41,6 +47,7 @@ const Box = ({ children }: { children: React.ReactNode }) => (
 );
 
 function Home() {
+  const { featured } = Route.useLoaderData();
   useReveal();
 
   return (
@@ -53,7 +60,7 @@ function Home() {
       </div>
 
       <Box><RingDivider /></Box>
-      <Box><Featured /></Box>
+      <Box><Featured products={featured} /></Box>
 
       {/* Categories — fixed height to eliminate dead space */}
       <div className="px-4 sm:px-8">

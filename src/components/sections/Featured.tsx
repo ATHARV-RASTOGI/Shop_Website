@@ -1,55 +1,21 @@
-import emerald from "@/assets/product-emerald-ring.webp";
-import crimson from "@/assets/product-crimson-hoops.webp";
-import garnet from "@/assets/product-garnet-drops.webp";
-import rosso from "@/assets/product-rosso-pearl.webp";
-
 type Product = {
   name: string;
-  price: string;
-  category: string;
-  img: string;
-  // grid placement (desktop)
-  colSpan: string;
-  rowSpan?: string;
-  align?: string;
+  subtitle: string;
+  image: string;
 };
 
-const PRODUCTS: Product[] = [
-  {
-    name: "Emerald Royale Ring",
-    price: "€420",
-    category: "Ring · 18k Gold",
-    img: emerald,
-    colSpan: "lg:col-span-5",
-    align: "lg:mt-0",
-  },
-  {
-    name: "Crimson Drop Hoops",
-    price: "€260",
-    category: "Earring · Enamel",
-    img: crimson,
-    colSpan: "lg:col-span-4 lg:col-start-8",
-    align: "lg:mt-32",
-  },
-  {
-    name: "Garnet Aurelia Drops",
-    price: "€310",
-    category: "Earring · Garnet",
-    img: garnet,
-    colSpan: "lg:col-span-4 lg:col-start-2",
-    align: "lg:mt-0",
-  },
-  {
-    name: "Rosso Pearl Strand",
-    price: "€340",
-    category: "Necklace · Pearl",
-    img: rosso,
-    colSpan: "lg:col-span-5 lg:col-start-7",
-    align: "lg:-mt-24",
-  },
-];
+interface FeaturedProps {
+  products: Product[];
+}
 
-export function Featured() {
+export function Featured({ products }: FeaturedProps) {
+  const gridPlacements = [
+    { colSpan: "lg:col-span-5", align: "lg:mt-0" },
+    { colSpan: "lg:col-span-4 lg:col-start-8", align: "lg:mt-32" },
+    { colSpan: "lg:col-span-4 lg:col-start-2", align: "lg:mt-0" },
+    { colSpan: "lg:col-span-5 lg:col-start-7", align: "lg:-mt-20" },
+  ];
+
   return (
     <section id="collection" className="bg-background py-24 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
@@ -72,37 +38,39 @@ export function Featured() {
         </div>
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-20">
-          {PRODUCTS.map((p, i) => (
-            <article
-              key={p.name}
-              data-reveal
-              data-reveal-delay={i * 120}
-              className={`group ${p.colSpan} ${p.align ?? ""}`}
-            >
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-secondary">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  loading="lazy"
-                  width={900}
-                  height={1100}
-                  className="product-img h-full w-full object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-background/95 px-5 py-3 text-center text-xs uppercase tracking-[0.2em] text-foreground transition-transform duration-500 group-hover:translate-y-0">
-                  Add to bag
+          {products && products.map((p, i) => {
+            const placement = gridPlacements[i % gridPlacements.length];
+            return (
+              <article
+                key={p.name}
+                data-reveal
+                data-reveal-delay={i * 120}
+                className={`group ${placement.colSpan} ${placement.align}`}
+              >
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-secondary">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    width={1300}
+                    height={1100}
+                    className="product-img h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 translate-y-full bg-background/95 px-5 py-3 text-center text-xs uppercase tracking-[0.2em] text-foreground transition-transform duration-500 group-hover:translate-y-0">
+                    Add to bag
+                  </div>
                 </div>
-              </div>
-              <div className="mt-5 flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="font-serif text-xl leading-tight">{p.name}</h3>
-                  <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {p.category}
-                  </p>
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="font-serif text-lg sm:text-xl leading-tight">{p.name}</h3>
+                    <p className="mt-1.5 text-[10px] sm:text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      {p.subtitle}
+                    </p>
+                  </div>
                 </div>
-                <span className="font-serif text-lg italic text-primary">{p.price}</span>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -51,7 +51,7 @@ export function Header() {
           to="/"
           className={cn(
             "absolute left-1/2 -translate-x-1/2 font-serif tracking-tight text-foreground select-none whitespace-nowrap transition-all duration-300",
-            isCondensed ? "text-base lg:text-lg" : "text-lg lg:text-xl"
+            isCondensed ? "text-base lg:text-lg" : "text-lg lg:text-2xl"
           )}
         >
           K.K <span className="text-primary">Jewelers</span>
@@ -61,7 +61,7 @@ export function Header() {
         <div className="flex items-center gap-6 flex-1 justify-end">
           
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-8">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -74,7 +74,7 @@ export function Header() {
           </nav>
           {/* Mobile Hamburger Toggle */}
           <button
-            className="md:hidden p-1 text-muted-foreground hover:text-foreground transition-colors"
+            className="lg:hidden p-1 text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle menu"
           >
@@ -85,7 +85,7 @@ export function Header() {
 
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <nav className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-md absolute w-full">
+        <nav className="lg:hidden border-t border-border/60 bg-background/95 backdrop-blur-md absolute w-full">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}

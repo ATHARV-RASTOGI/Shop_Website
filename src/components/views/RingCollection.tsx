@@ -12,6 +12,7 @@ import { ReactLenis } from 'lenis/react';
 import { useReveal } from "@/hooks/use-reveal";
 import { EnquireModal } from "@/components/ui/EnquireModal";
 import { StylishCarousel } from "@/components/ui/StylishCarousel";
+import { BespokeCTA } from "@/components/sections/BespokeCTA";
 import { Route } from "@/routes/rings";
 
 
@@ -92,7 +93,6 @@ function WordReveal({
 // ─── Single ring card ─────────────────────────────────────────────────────────
 function RingCard({ ring, index, total }: { ring: any; index: number; total: number }) {
   const isEven = index % 2 === 0;
-  const [isSaved, setIsSaved] = useState(false);
   const [enquireOpen, setEnquireOpen] = useState(false);
 
   return (
@@ -100,7 +100,7 @@ function RingCard({ ring, index, total }: { ring: any; index: number; total: num
       id={`ring-${index}`}
       data-reveal
       className={cn(
-        "reveal grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[560px] bg-secondary group/article",
+        "reveal grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[640px] bg-secondary group/article",
         !isEven && "lg:[&>*:first-child]:order-2"
       )}
     >
@@ -114,11 +114,11 @@ function RingCard({ ring, index, total }: { ring: any; index: number; total: num
 
         <div
           className="relative w-full rounded-2xl bg-background border border-foreground/6 shadow-sm flex items-center justify-center overflow-hidden"
-          style={{ minHeight: "500px" }}
+          style={{ minHeight: "600px" }}
         >
           <StylishCarousel
             items={ring.angles}
-            slideSize="clamp(280px, 20vmin, 220px)"
+            slideSize="clamp(275px, 25vmin, 350px)"
             rotationDegrees={24}
             inactiveScale={0.76}
             yOffsetPercent={54}
@@ -196,17 +196,6 @@ function RingCard({ ring, index, total }: { ring: any; index: number; total: num
           >
             Enquire
           </button>
-          <button
-            onClick={() => setIsSaved(!isSaved)}
-            className={cn(
-              "px-5 py-3 text-[11px] tracking-[0.22em] uppercase border transition-all duration-300 rounded-full w-24 flex items-center justify-center",
-              isSaved
-                ? "bg-foreground text-background border-foreground"
-                : "border-foreground/30 text-foreground/65 hover:border-foreground/50 hover:text-foreground"
-            )}
-          >
-            {isSaved ? "Saved" : "Save"}
-          </button>
         </div>
       </div>
       <EnquireModal isOpen={enquireOpen} onClose={() => setEnquireOpen(false)} itemName={ring.name} />
@@ -233,15 +222,7 @@ export function RingsCollection() {
           >
             Rings
           </h1>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <p className="text-[15px] text-foreground/55 leading-relaxed max-w-md">
-              {RINGS.length} pieces. Each exists in a numbered edition — some as few as six.
-              Every angle photographed. Every material disclosed.
-            </p>
-            <span className="text-[11px] tracking-[0.22em] uppercase text-foreground/35">
-              {RINGS.length} pieces · Paris, 2026
-            </span>
-          </div>
+
         </section>
 
         <div className="w-full h-px bg-foreground/10" />
@@ -257,22 +238,7 @@ export function RingsCollection() {
         </div>
 
         {/* Bespoke CTA */}
-        <section data-reveal className="reveal py-24 px-6 text-center bg-secondary">
-          <p className="eyebrow mb-4">Bespoke</p>
-          <h2
-            className="text-3xl sm:text-4xl font-light text-foreground mb-6"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-          >
-            None of these is quite right?
-          </h2>
-          <p className="text-sm text-foreground/50 max-w-sm mx-auto mb-10 leading-relaxed">
-            We make pieces to commission. Bring a stone, a sketch, or just a feeling —
-            our atelier will take it from there.
-          </p>
-          <button className="px-10 py-4 text-[11px] tracking-[0.24em] uppercase bg-foreground text-background hover:bg-foreground/85 transition-colors duration-200 rounded-full">
-            Start a commission
-          </button>
-        </section>
+        <BespokeCTA />
 
         <div className="w-full h-px bg-foreground/10" />
         <Footer />

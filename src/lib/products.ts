@@ -98,3 +98,24 @@ export const getNecklaces = createServerFn({ method: 'GET' }).handler(async () =
     };
   });
 });
+
+export const getFeatured = createServerFn({ method: 'GET' }).handler(async () => {
+  const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!);
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('featured', true)
+    .limit(4);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data.map(({ images, ...row }) => {
+    const rawImages = (images || []) as ProductImage[];
+    return {
+      ...row,
+      image: rawImages.length > 0 ? cld(rawImages[0].public_id) : '/cat-rings.webp'
+    };
+  });
+});

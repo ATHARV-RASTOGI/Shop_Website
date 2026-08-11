@@ -10,7 +10,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import heroImg from "@/assets/hero-model.webp";
 
 
 function NotFoundComponent() {
@@ -78,7 +77,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "preload", as: "image", href: heroImg, fetchPriority: "high" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://res.cloudinary.com" },
       { rel: "dns-prefetch", href: "https://res.cloudinary.com" },

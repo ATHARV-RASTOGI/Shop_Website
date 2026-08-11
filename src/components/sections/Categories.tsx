@@ -4,16 +4,10 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, easeOut, animate } from "framer-motion";
 import { cn } from "@/lib/utils";
-import catEarrings    from "@/assets/cat-earrings.webp";
-import catNecklaces   from "@/assets/cat-necklaces.webp";
-import catRings       from "@/assets/cat-rings.webp";
-import heroModel      from "@/assets/hero-model.webp";
-import journalAtelier from "@/assets/journal-atelier.webp";
-import journalCare    from "@/assets/journal-care.webp";
-import crimsonHoops   from "@/assets/product-crimson-hoops.webp";
-import emeraldRing    from "@/assets/product-emerald-ring.webp";
-import garnetDrops    from "@/assets/product-garnet-drops.webp";
-import rossoPearl     from "@/assets/product-rosso-pearl.webp";
+const CLOUD_NAME = "kjlajbrr";
+function cld(publicId: string, width = 800) {
+  return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/f_auto,q_auto,w_${width}/${publicId}`;
+}
 
 
 // ─── Inline ThreeDImageRing (Lightswind source) ───────────────────────────────
@@ -220,16 +214,16 @@ function ThreeDImageRing({
 
 // 10 images — ring distributes them evenly at 36° apart
 const ringImages = [
-  catRings,
-  crimsonHoops,
-  catNecklaces,
-  emeraldRing,
-  catEarrings,
-  garnetDrops,
-  heroModel,
-  rossoPearl,
-  journalAtelier,
-  journalCare,
+  cld("Blue_stone_2_pjjdzn"),
+  cld("Crown_1"),
+  cld("Long_heavy_1"),
+  cld("red-ring-1"),
+  cld("Song_Drop"),
+  cld("Temple_jewel_1"),
+  cld("Spiral"),
+  cld("Sun_shape"),
+  cld("Modrop_1"),
+  cld("Latkan"),
 ];
 
 // ─── Categories section ───────────────────────────────────────────────────────

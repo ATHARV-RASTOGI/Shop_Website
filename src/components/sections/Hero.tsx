@@ -6,17 +6,13 @@ export function Hero() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-6 pb-20 pt-12 lg:grid-cols-12 lg:gap-6 lg:px-12 lg:pb-32 lg:pt-20">
         {/* Left: copy */}
         <div className="lg:col-span-5 lg:pt-16">
-          <div data-reveal>
-            <span className="eyebrow">2026 Collection </span>
-          </div>
-
           <h1
             data-reveal
             data-reveal-delay="120"
             className="mt-8 text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.02em]"
           >
-           Relationship ,<br />
-            <span className="italic text-primary">Build on Trust</span><br />
+           Relationship,<br />
+            <span className="italic text-primary">Built on Trust.</span><br />
           </h1>
 
           <p
@@ -24,7 +20,11 @@ export function Hero() {
             data-reveal-delay="240"
             className="mt-8 max-w-md text-base leading-relaxed text-muted-foreground"
           >
-           Explore our wide range of <b>hallmarked</b> gold jewelry , along with silver . Have a unique idea? Let our expert Delhi karigars handcraft your custom designs .
+           Explore our wide range of <b>hallmarked</b> gold jewelry, and other silver items. 
+           <br />
+          <i>Have a unique idea?</i>
+           <br />
+           Let our expert karigars handcraft your custom designs.
 
           </p>
           <div data-reveal data-reveal-delay="360" className="mt-10 flex items-center gap-6">
@@ -47,10 +47,6 @@ export function Hero() {
             <div>
               <dt className="eyebrow">Open Since</dt>
               <dd className="mt-2 font-serif text-2xl"> 19-- </dd>
-            </div>
-            <div>
-              <dt className="eyebrow">Workshop </dt>
-              <dd className="mt-2 font-serif text-2xl">Delhi</dd>
             </div>
           </dl>
         </div>

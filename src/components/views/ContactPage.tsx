@@ -28,16 +28,16 @@ export function ContactPage() {
 
         {/* Hero Section */}
         <section className="relative px-6 pt-28 pb-16 max-w-5xl mx-auto text-center">
-          <p className="eyebrow mb-4">Client Care & Concierge</p>
+          <p className="eyebrow mb-4">Contact Us</p>
           <h1
             className="text-4xl sm:text-6xl font-light leading-[1.08] tracking-tight text-foreground mb-6"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             Get in Touch <br />
-            <span className="italic text-primary">with our Atelier</span>
+            <span className="italic text-primary">with our Showroom</span>
           </h1>
           <p className="text-base text-foreground/65 max-w-lg mx-auto leading-relaxed">
-            Whether you wish to enquire about an existing piece, schedule a private showroom consultation, or discuss a bespoke commission, we are here to assist.
+            Whether you wish to enquire about an existing piece, or discuss a custom order, we are here to assist.
           </p>
         </section>
 
@@ -50,7 +50,7 @@ export function ContactPage() {
             {/* Left: Contact Info Cards */}
             <div data-reveal className="lg:col-span-6 space-y-6">
               <div className="p-8 rounded-2xl bg-secondary border border-border/60 shadow-sm space-y-6">
-                <h3 className="text-2xl font-light font-serif">Showroom & Atelier</h3>
+                <h3 className="text-2xl font-light font-serif">Showroom </h3>
                 
                 <div className="space-y-5 text-sm text-foreground/80">
                   <div className="flex items-start gap-4">
@@ -145,8 +145,7 @@ export function ContactPage() {
                         className="w-full px-4 py-3 bg-background border border-border/80 rounded-xl text-sm focus:outline-none focus:border-foreground/50 text-foreground"
                       >
                         <option value="">General Enquiry</option>
-                        <option value="Bespoke Commission">Bespoke Design Commission</option>
-                        <option value="Showroom Appointment">Schedule Showroom Appointment</option>
+                        <option value="Custom Order">Custom Order</option>
                         <option value="Piece Availability">Check Piece Availability</option>
                       </select>
                     </div>
@@ -162,8 +161,8 @@ export function ContactPage() {
                 </div>
 
                 <div className="pt-6 border-t border-border/40">
-                  <p className="text-xs text-foreground/45 text-center">
-                    Prefer quick assistance? Call us directly at <a href={`tel:${STORE_LOCATION.phone}`} className="underline hover:text-foreground">{STORE_LOCATION.phone}</a>.
+                  <p className="text-s text-foreground/45 text-center">
+                    Call us directly at <a href={`tel:${STORE_LOCATION.phone}`} className="underline hover:text-foreground">{STORE_LOCATION.phone}</a>.
                   </p>
                 </div>
               </div>
