@@ -3,8 +3,7 @@ import { ReactLenis } from "lenis/react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { useReveal } from "@/hooks/use-reveal";
-import { images, Earing_images } from "@/lib/images";
-import { Link } from "@tanstack/react-router";
+import { cld } from "@/lib/images";
 import { Sparkles, Hammer, ShieldCheck, ArrowRight } from "lucide-react";
 
 export function AboutPage() {
@@ -54,7 +53,7 @@ export function AboutPage() {
             <div data-reveal data-reveal-delay="150" className="lg:col-span-6">
               <div className="relative rounded-2xl overflow-hidden shadow-xl bg-secondary aspect-[4/3]">
                 <img
-                  src={images.bluering || "https://res.cloudinary.com/kjlajbrr/image/upload/f_auto,q_auto,w_1000/Blue_stone_2_pjjdzn"}
+                  src={cld("Blue_stone_2_pjjdzn", 1000)}
                   alt="Jewelry crafting at K.K Jewelers atelier"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
@@ -132,7 +131,7 @@ export function AboutPage() {
             <div data-reveal data-reveal-delay="150" className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden shadow-xl bg-secondary aspect-[4/3]">
                 <img
-                  src={Earing_images.Song_Drop || "https://res.cloudinary.com/kjlajbrr/image/upload/f_auto,q_auto,w_1000/Song_Drop"}
+                  src={cld("Song_Drop", 1000)}
                   alt="Fine jewelry workshop details"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
