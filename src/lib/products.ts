@@ -77,20 +77,20 @@ export const getNecklaces = createServerFn({ method: 'GET' }).handler(async () =
 
   return data.map(({ images, ...row }) => {
     const rawImages = (images || []) as ProductImage[];
-    
-    const sliderImages = rawImages.length > 0 
+
+    const sliderImages = rawImages.length > 0
       ? rawImages.map(img => ({
-          id: img.public_id,
-          url: cld(img.public_id),
-          alt: img.alt,
-          title: img.title
-        }))
+        id: img.public_id,
+        url: cld(img.public_id),
+        alt: img.alt,
+        title: img.title
+      }))
       : [{
-          id: 'fallback-necklace',
-          url: '/cat-necklaces.webp',
-          alt: 'Necklaces Collection',
-          title: 'Necklaces'
-        }];
+        id: 'fallback-necklace',
+        url: '/cat-necklaces.webp',
+        alt: 'Necklaces Collection',
+        title: 'Necklaces'
+      }];
 
     return {
       ...row,

@@ -20,22 +20,25 @@ export const Route = createFileRoute("/")({
     const featured = await getFeatured();
     return { featured };
   },
-  head: () => ({
-    meta: [
-      { title: "K.K Jewelers — 2026 Collection, made in Paris" },
-      {
-        name: "description",
-        content:
-          "A boutique Parisian jewelry house. The 2026 K.K Jewelers edit: sculptural gold, warm palettes, and understated luxury — hand-set in our atelier.",
-      },
-      { property: "og:title", content: "K.K Jewelers — 2026 Collection" },
-      { property: "og:description", content: "Sculptural fine jewelry, made to order in Paris. Discover the 2026 edit." },
-      { property: "og:type", content: "website" },
-    ],
-    links: [
-      { rel: "preload", as: "image", href: heroImg, fetchPriority: "high" },
-    ],
-  }),
+  head: ({ loaderData }) => {
+    const featuredImg = loaderData?.featured?.[0]?.image || heroImg;
+    return {
+      meta: [
+        { title: "K.K Jewelers — 2026 Collection, made in Paris" },
+        {
+          name: "description",
+          content:
+            "A boutique Parisian jewelry house. The 2026 K.K Jewelers edit: sculptural gold, warm palettes, and understated luxury — hand-set in our atelier.",
+        },
+        { property: "og:title", content: "K.K Jewelers — 2026 Collection" },
+        { property: "og:description", content: "Sculptural fine jewelry, made to order in Paris. Discover the 2026 edit." },
+        { property: "og:type", content: "website" },
+      ],
+      links: [
+        { rel: "preload", as: "image", href: featuredImg, fetchPriority: "high" },
+      ],
+    };
+  },
   component: Home,
 });
 const Box = ({ children }: { children: React.ReactNode }) => (
@@ -55,7 +58,7 @@ function Home() {
       <div className="px-4 sm:px-8">
         <div className="bg-background rounded-2xl overflow-hidden">
           <Header />
-          <Hero />
+          <Hero product={featured?.[0]} />
         </div>
       </div>
 

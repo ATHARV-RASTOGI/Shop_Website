@@ -54,7 +54,7 @@ export function Featured({ products }: FeaturedProps) {
                     loading="lazy"
                     width={1300}
                     height={1100}
-                    className="product-img h-full w-full object-cover"
+                    className="product-img h-full w-full object-cover scale-[1.2] transition-transform duration-700 group-hover:scale-[1.25]"
                   />
                   <div className="absolute inset-x-0 bottom-0 translate-y-full bg-background/95 px-5 py-3 text-center text-xs uppercase tracking-[0.2em] text-foreground transition-transform duration-500 group-hover:translate-y-0">
                     Add to bag

@@ -1,6 +1,6 @@
 import heroImg from "@/assets/hero-model.webp";
 
-export function Hero() {
+export function Hero({ product }: { product?: any }) {
   return (
     <section className="relative overflow-hidden bg-background">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-6 pb-20 pt-12 lg:grid-cols-12 lg:gap-6 lg:px-12 lg:pb-32 lg:pt-20">
@@ -59,20 +59,12 @@ export function Hero() {
             className="relative ml-auto aspect-[3/4] w-full overflow-hidden lg:w-[88%]"
           >
             <img
-              src={heroImg}
-              alt="Model wearing the 2026 K.K Jewelers collection"
+              src={product?.image || heroImg}
               width={1380}
               height={1600}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover scale-[1.3]"
               fetchPriority="high"
             />
-            <div className="absolute left-0 top-0 -translate-x-1/3 translate-y-2/3 bg-background/85 p-5 backdrop-blur-sm md:p-7">
-              <div className="eyebrow">Featured</div>
-              <div className="mt-2 font-serif text-lg leading-snug">
-                Garnet Aurelia Drops<br />
-                <span className="italic text-primary">€310</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
