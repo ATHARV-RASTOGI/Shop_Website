@@ -205,20 +205,11 @@ export function EarringsCollection() {
         <section className="relative px-6 pt-28 pb-16 max-w-5xl mx-auto">
           <p className="eyebrow mb-4">The Collection</p>
           <h1
-            className="text-5xl sm:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-6"
+            className="text-5xl sm:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-1"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             Earrings
           </h1>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <p className="text-[15px] text-foreground/55 leading-relaxed max-w-md">
-              {EARRINGS.length} pairs. Each exists in a numbered edition — worn once, remembered always.
-              Every angle photographed. Every material disclosed.
-            </p>
-            <span className="text-[11px] tracking-[0.22em] uppercase text-foreground/35">
-              {EARRINGS.length} pieces · Paris, 2026
-            </span>
-          </div>
         </section>
 
         <div className="w-full h-px bg-foreground/10" />

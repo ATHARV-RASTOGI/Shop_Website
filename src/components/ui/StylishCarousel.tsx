@@ -145,7 +145,7 @@ export function StylishCarousel({
                     onClick={() => clickToNavigate && goTo(i)}
                     className={cn(
                       "w-full h-full object-cover transition-all duration-500",
-                      isActive && "group-hover/slide:scale-105 group-hover/slide:brightness-110 cursor-zoom-in",
+                      isActive && "group-hover/slide:scale-105 group-hover/slide:brightness-110",
                       !isActive && "brightness-60",
                       clickToNavigate && !isActive && "cursor-pointer hover:brightness-90"
                     )}

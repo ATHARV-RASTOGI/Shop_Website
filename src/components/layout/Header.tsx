@@ -3,14 +3,19 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const NAV_LINKS = [ 
+const PRIMARY_LINKS = [
   { label: "Rings",      href: "/rings" },
   { label: "Earrings",   href: "/earings" },
   { label: "Necklaces",  href: "/necklace" },
+];
+
+const SECONDARY_LINKS = [
   { label: "Journal",    href: "/journal" },
   { label: "About",      href: "/about" },
   { label: "Contact",    href: "/contact" },
 ];
+
+const ALL_LINKS = [...PRIMARY_LINKS, ...SECONDARY_LINKS];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,7 +67,7 @@ export function Header() {
           
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
-            {NAV_LINKS.map((link) => (
+            {ALL_LINKS.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
@@ -83,10 +88,26 @@ export function Header() {
         </div>
       </div>
 
+      {/* Mobile Secondary Row for Primary Links */}
+      <div className={cn(
+        "lg:hidden flex items-center justify-center gap-8 border-t border-border/40 overflow-x-auto px-6 no-scrollbar transition-all duration-300",
+        isCondensed ? "h-10" : "h-12"
+      )}>
+        {PRIMARY_LINKS.map((link) => (
+          <Link
+            key={link.href}
+            to={link.href}
+            className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors duration-200 [&.active]:text-foreground [&.active]:border-b [&.active]:border-foreground/40 pb-px"
+          >
+            {link.label}
+          </Link>
+        ))}
+      </div>
+
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <nav className="lg:hidden border-t border-border/60 bg-background/95 backdrop-blur-md absolute w-full">
-          {NAV_LINKS.map((link) => (
+        <nav className="lg:hidden border-t border-border/60 bg-background/95 backdrop-blur-md absolute w-full shadow-lg">
+          {SECONDARY_LINKS.map((link) => (
             <Link
               key={link.href}
               to={link.href}

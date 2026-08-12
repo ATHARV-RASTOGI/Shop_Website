@@ -146,7 +146,7 @@ export function NecklaceCollection() {
         <section className="relative px-6 pt-28 pb-16 max-w-5xl mx-auto">
           <p className="eyebrow mb-4">The Collection</p>
           <h1
-            className="text-5xl sm:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-6"
+            className="text-5xl sm:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-1"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             Necklaces
