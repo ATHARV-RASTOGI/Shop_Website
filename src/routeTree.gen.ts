@@ -9,43 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WorkshopRouteImport } from './routes/workshop'
-import { Route as RingsRouteImport } from './routes/rings'
-import { Route as NecklaceRouteImport } from './routes/necklace'
-import { Route as JournalRouteImport } from './routes/journal'
-import { Route as EaringsRouteImport } from './routes/earings'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EaringsRouteImport } from './routes/earings'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as NecklaceRouteImport } from './routes/necklace'
+import { Route as RingsRouteImport } from './routes/rings'
+import { Route as WorkshopRouteImport } from './routes/workshop'
 
-const WorkshopRoute = WorkshopRouteImport.update({
-  id: '/workshop',
-  path: '/workshop',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RingsRoute = RingsRouteImport.update({
-  id: '/rings',
-  path: '/rings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NecklaceRoute = NecklaceRouteImport.update({
-  id: '/necklace',
-  path: '/necklace',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JournalRoute = JournalRouteImport.update({
-  id: '/journal',
-  path: '/journal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EaringsRoute = EaringsRouteImport.update({
-  id: '/earings',
-  path: '/earings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -53,9 +28,34 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EaringsRoute = EaringsRouteImport.update({
+  id: '/earings',
+  path: '/earings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NecklaceRoute = NecklaceRouteImport.update({
+  id: '/necklace',
+  path: '/necklace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RingsRoute = RingsRouteImport.update({
+  id: '/rings',
+  path: '/rings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkshopRoute = WorkshopRouteImport.update({
+  id: '/workshop',
+  path: '/workshop',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -136,46 +136,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/workshop': {
-      id: '/workshop'
-      path: '/workshop'
-      fullPath: '/workshop'
-      preLoaderRoute: typeof WorkshopRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rings': {
-      id: '/rings'
-      path: '/rings'
-      fullPath: '/rings'
-      preLoaderRoute: typeof RingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/necklace': {
-      id: '/necklace'
-      path: '/necklace'
-      fullPath: '/necklace'
-      preLoaderRoute: typeof NecklaceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/journal': {
-      id: '/journal'
-      path: '/journal'
-      fullPath: '/journal'
-      preLoaderRoute: typeof JournalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/earings': {
-      id: '/earings'
-      path: '/earings'
-      fullPath: '/earings'
-      preLoaderRoute: typeof EaringsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -185,11 +150,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/earings': {
+      id: '/earings'
+      path: '/earings'
+      fullPath: '/earings'
+      preLoaderRoute: typeof EaringsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/necklace': {
+      id: '/necklace'
+      path: '/necklace'
+      fullPath: '/necklace'
+      preLoaderRoute: typeof NecklaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rings': {
+      id: '/rings'
+      path: '/rings'
+      fullPath: '/rings'
+      preLoaderRoute: typeof RingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workshop': {
+      id: '/workshop'
+      path: '/workshop'
+      fullPath: '/workshop'
+      preLoaderRoute: typeof WorkshopRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

@@ -1,5 +1,6 @@
 // src/components/views/AboutPage.tsx
 import { ReactLenis } from "lenis/react";
+import { Link } from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { useReveal } from "@/hooks/use-reveal";
