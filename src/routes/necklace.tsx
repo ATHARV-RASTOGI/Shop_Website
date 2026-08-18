@@ -1,25 +1,17 @@
-// src/routes/necklaces.tsx
-// Thin route — mirrors src/routes/rings.tsx and src/routes/earrings.tsx
-
+// src/routes/necklace.tsx
 import { createFileRoute } from "@tanstack/react-router";
 import { NecklaceCollection } from "@/components/views/NecklaceCollection";
 import { getNecklaces } from "@/lib/products";
+import { SEO } from "@/lib/constants";
 
 export const Route = createFileRoute("/necklace")({
   loader: () => getNecklaces(),
   head: () => ({
     meta: [
-      { title: "Necklaces — K.K Jewelers 2026 Collection" },
-      {
-        name: "description",
-        content:
-          "Seven sculptural gold necklaces, hand-made in our Parisian atelier. Chains, pendants, rivières, and collars — each exists in a numbered edition.",
-      },
-      { property: "og:title", content: "Necklaces — K.K Jewelers" },
-      {
-        property: "og:description",
-        content: "Seven sculptural gold necklaces, made to order in Paris. Discover the 2026 edit.",
-      },
+      { title: SEO.necklace.title },
+      { name: "description", content: SEO.necklace.description },
+      { property: "og:title", content: SEO.necklace.ogTitle },
+      { property: "og:description", content: SEO.necklace.ogDescription },
       { property: "og:type", content: "website" },
     ],
   }),

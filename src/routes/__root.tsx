@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { SEO, OG_IMAGE, SITE_URL } from "@/lib/constants";
 
 import appCss from "../styles.css?url";
 
@@ -73,11 +74,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "author", content: "K.K Jewelers" },
+      { name: "author", content: SEO.siteName },
+      { name: "theme-color", content: "#0a0a0a" },
+      { property: "og:site_name", content: SEO.siteName },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: SITE_URL },
       { rel: "preconnect", href: "https://res.cloudinary.com" },
       { rel: "dns-prefetch", href: "https://res.cloudinary.com" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

@@ -23,10 +23,10 @@ export function AboutPage() {
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             Crafting Timeless Elegance <br className="hidden sm:inline" />
-            <span className="italic text-primary">Since 1985 [PLACEHOLDER]</span>
+            <span className="italic text-primary">Since 1985</span>
           </h1>
           <p className="text-base sm:text-lg text-foreground/65 leading-relaxed max-w-2xl mx-auto">
-            From our roots in Farrukhabad to our master artisanal workshop in Delhi, K.K Jewelers bridges generational Indian craftsmanship with contemporary luxury design.
+            From our roots in Farrukhabad, K.K Jewelers bridges generational Indian craftsmanship with contemporary luxury design.
           </p>
         </section>
 
@@ -48,7 +48,7 @@ export function AboutPage() {
                 Founded with a commitment to pure gold standards and unmatched artistry, K.K Jewelers has served discerning clients across India. Every creation begins with ethically sourced raw gold and hand-selected stones, transformed by master artisans who have perfected their trade over decades.
               </p>
               <p className="text-sm text-foreground/50 leading-relaxed">
-                [PLACEHOLDER: Insert detailed founder story, heritage milestones, and historical craftsmanship philosophy here for launch review.]
+                For decades, our family has upheld the art of handcrafting jewellery with integrity — every piece carrying forward a tradition of trust and meticulous precision.
               </p>
             </div>
             <div data-reveal data-reveal-delay="150" className="lg:col-span-6">
@@ -89,7 +89,7 @@ export function AboutPage() {
                   </p>
                 </div>
                 <p className="text-[11px] text-foreground/35 mt-6 tracking-wide">
-                  [PLACEHOLDER: Hallmarking verification info]
+                  BIS Hallmark verified · HUID traceable
                 </p>
               </div>
 
@@ -100,11 +100,11 @@ export function AboutPage() {
                   </div>
                   <h3 className="text-xl font-medium font-serif mb-3">Handcrafted Atelier</h3>
                   <p className="text-sm text-foreground/60 leading-relaxed">
-                    Each piece is hand-set and hand-finished in our dedicated Delhi atelier, blending classic techniques with modern ergonomic design.
+                    Each piece is hand-set and hand-finished in our dedicated workshop, blending classic techniques with modern ergonomic design.
                   </p>
                 </div>
                 <p className="text-[11px] text-foreground/35 mt-6 tracking-wide">
-                  [PLACEHOLDER: Workshop artisan count & details]
+                  Master karigars with 20+ years of experience
                 </p>
               </div>
 
@@ -119,7 +119,7 @@ export function AboutPage() {
                   </p>
                 </div>
                 <p className="text-[11px] text-foreground/35 mt-6 tracking-wide">
-                  [PLACEHOLDER: Commission turnaround timeframe]
+                  Typical turnaround: 2–4 weeks
                 </p>
               </div>
             </div>
@@ -149,7 +149,7 @@ export function AboutPage() {
                 <span className="italic text-primary">Become Heirlooms</span>
               </h2>
               <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
-                Whether you visit our showroom in Farrukhabad or consult with our custom design team in Delhi, every interaction with K.K Jewelers is tailored to your personal journey.
+                Whether you visit our showroom in Farrukhabad or reach out for a custom consultation, every interaction with K.K Jewelers is tailored to your personal journey.
               </p>
               <div className="pt-4">
                 <Link

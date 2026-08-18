@@ -1,21 +1,15 @@
 // src/routes/contact.tsx
 import { createFileRoute } from "@tanstack/react-router";
 import { ContactPage } from "@/components/views/ContactPage";
+import { SEO } from "@/lib/constants";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — K.K Jewelers" },
-      {
-        name: "description",
-        content:
-          "Get in touch with K.K Jewelers. Visit our showroom in Farrukhabad, schedule an appointment, or enquire about custom bespoke jewelry commissions.",
-      },
-      { property: "og:title", content: "Contact Us — K.K Jewelers" },
-      {
-        property: "og:description",
-        content: "Visit our showroom in Farrukhabad or send an enquiry.",
-      },
+      { title: SEO.contact.title },
+      { name: "description", content: SEO.contact.description },
+      { property: "og:title", content: SEO.contact.ogTitle },
+      { property: "og:description", content: SEO.contact.ogDescription },
       { property: "og:type", content: "website" },
     ],
   }),

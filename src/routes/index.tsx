@@ -9,7 +9,7 @@ import { Featured } from "@/components/sections/Featured";
 import { Journal } from "@/components/sections/Journal";
 import { Footer } from "@/components/layout/Footer";
 import React, { Suspense } from "react";
-import { STORE_LOCATION } from "@/lib/constants";
+import { STORE_LOCATION, SEO } from "@/lib/constants";
 import { ExternalLink } from "lucide-react";
 import { getFeatured } from "@/lib/products";
 import heroImg from "@/assets/hero-model.webp";
@@ -20,25 +20,15 @@ export const Route = createFileRoute("/")({
     const featured = await getFeatured();
     return { featured };
   },
-  head: ({ loaderData }) => {
-    const featuredImg = loaderData?.featured?.[0]?.image || heroImg;
-    return {
-      meta: [
-        { title: "K.K Jewelers — 2026 Collection, made in Paris" },
-        {
-          name: "description",
-          content:
-            "A boutique Parisian jewelry house. The 2026 K.K Jewelers edit: sculptural gold, warm palettes, and understated luxury — hand-set in our atelier.",
-        },
-        { property: "og:title", content: "K.K Jewelers — 2026 Collection" },
-        { property: "og:description", content: "Sculptural fine jewelry, made to order in Paris. Discover the 2026 edit." },
-        { property: "og:type", content: "website" },
-      ],
-      links: [
-        { rel: "preload", as: "image", href: featuredImg, fetchPriority: "high" },
-      ],
-    };
-  },
+  head: () => ({
+    meta: [
+      { title: SEO.home.title },
+      { name: "description", content: SEO.home.description },
+      { property: "og:title", content: SEO.home.ogTitle },
+      { property: "og:description", content: SEO.home.ogDescription },
+      { property: "og:type", content: "website" },
+    ],
+  }),
   component: Home,
 });
 const Box = ({ children }: { children: React.ReactNode }) => (

@@ -1,0 +1,8 @@
+# robots.txt — K.K Jewelers
+# Allow all search engine crawlers to index the entire site.
+# Update the Sitemap URL below when you purchase a custom domain.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://kk-jewelers.vercel.app/sitemap.xml
