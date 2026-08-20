@@ -8,6 +8,8 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 import { SEO, OG_IMAGE, SITE_URL } from "@/lib/constants";
 
 import appCss from "../styles.css?url";
@@ -109,6 +111,8 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <SpeedInsights />
+        <Analytics />
         <Scripts />
       </body>
     </html>
