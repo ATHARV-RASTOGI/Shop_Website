@@ -64,6 +64,8 @@ export function Hero({ product }: { product?: any }) {
               height={1600}
               className="h-full w-full object-cover scale-[1.3]"
               fetchPriority="high"
+              loading="eager"
+              decoding="async"
             />
           </div>
         </div>

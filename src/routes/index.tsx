@@ -20,15 +20,21 @@ export const Route = createFileRoute("/")({
     const featured = await getFeatured();
     return { featured };
   },
-  head: () => ({
-    meta: [
-      { title: SEO.home.title },
-      { name: "description", content: SEO.home.description },
-      { property: "og:title", content: SEO.home.ogTitle },
-      { property: "og:description", content: SEO.home.ogDescription },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: ({ loaderData }) => {
+    const featuredImg = loaderData?.featured?.[0]?.image || heroImg;
+    return {
+      meta: [
+        { title: SEO.home.title },
+        { name: "description", content: SEO.home.description },
+        { property: "og:title", content: SEO.home.ogTitle },
+        { property: "og:description", content: SEO.home.ogDescription },
+        { property: "og:type", content: "website" },
+      ],
+      links: [
+        { rel: "preload", as: "image", href: featuredImg, fetchPriority: "high" },
+      ],
+    };
+  },
   component: Home,
 });
 const Box = ({ children }: { children: React.ReactNode }) => (
