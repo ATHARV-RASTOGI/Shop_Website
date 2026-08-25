@@ -91,9 +91,9 @@ export const SEO = {
 
   /** Contact page: /contact */
   contact: {
-    title: "Visit Our Showroom or Book an Appointment — K.K Jewelers",
+    title: "Visit Our Showroom — K.K Jewelers",
     description:
-      "Get in touch with K.K Jewelers in Farrukhabad. Visit our showroom, schedule an appointment, or enquire about custom bespoke jewellery commissions.",
+      "Get in touch with K.K Jewelers in Farrukhabad. Visit our showroom or enquire about custom  jewellery.",
     ogTitle: "Contact Us — K.K Jewelers",
     ogDescription:
       "Visit our Farrukhabad showroom or send a custom jewellery enquiry.",

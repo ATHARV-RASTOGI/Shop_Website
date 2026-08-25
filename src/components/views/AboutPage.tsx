@@ -26,7 +26,7 @@ export function AboutPage() {
             <span className="italic text-primary">Since 1985</span>
           </h1>
           <p className="text-base sm:text-lg text-foreground/65 leading-relaxed max-w-2xl mx-auto">
-            From our roots in Farrukhabad, K.K Jewelers bridges generational Indian craftsmanship with contemporary luxury design.
+            From our roots in Farrukhabad, we bridge the generational Indian craftsmanship with contemporary luxury design.
           </p>
         </section>
 
@@ -45,7 +45,7 @@ export function AboutPage() {
                 <span className="italic text-primary">& Meticulous Precision</span>
               </h2>
               <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
-                Founded with a commitment to pure gold standards and unmatched artistry, K.K Jewelers has served discerning clients across India. Every creation begins with ethically sourced raw gold and hand-selected stones, transformed by master artisans who have perfected their trade over decades.
+                Founded with a commitment to pure gold standards and unmatched artistry, K.K Jewelers has served thousands of clients. Every creation begins with ethically sourced raw gold and hand-selected stones, transformed by artisans who have perfected their trade over decades.
               </p>
               <p className="text-sm text-foreground/50 leading-relaxed">
                 For decades, our family has upheld the art of handcrafting jewellery with integrity — every piece carrying forward a tradition of trust and meticulous precision.

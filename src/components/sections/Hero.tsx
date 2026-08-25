@@ -24,7 +24,7 @@ export function Hero({ product }: { product?: any }) {
            <br />
           <i>Have a unique idea?</i>
            <br />
-           Let our expert karigars handcraft your custom designs.
+         We will make it come to life .
 
           </p>
           <div data-reveal data-reveal-delay="360" className="mt-10 flex items-center gap-6">

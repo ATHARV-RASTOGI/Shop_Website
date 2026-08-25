@@ -10,9 +10,54 @@ import {
 import { useEffect, type ReactNode } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
-import { SEO, OG_IMAGE, SITE_URL } from "@/lib/constants";
+import { SEO, OG_IMAGE, SITE_URL, STORE_LOCATION } from "@/lib/constants";
+import { CurtainLoader } from "@/components/ui/CurtainLoader";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 import appCss from "../styles.css?url";
+
+// Local Business JSON-LD Schema — helps Google show your store in Maps/Search
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "JewelryStore"],
+  "name": "K.K Jewelers",
+  "url": SITE_URL,
+  "image": OG_IMAGE,
+  "description": "Traditional, modern & heritage handcrafted hallmarked gold jewellery from Farrukhabad. Custom commissions, BIS-certified gold rings, necklaces, and earrings.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2/207 Nehru Road",
+    "addressLocality": "Farrukhabad",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "209625",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": STORE_LOCATION.lat,
+    "longitude": STORE_LOCATION.lng
+  },
+  "telephone": STORE_LOCATION.phone,
+  "email": STORE_LOCATION.email,
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "10:30",
+      "closes": "19:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday"],
+      "description": "By Appointment"
+    }
+  ],
+  "priceRange": "₹₹₹",
+  "paymentAccepted": "Cash, UPI, Card",
+  "currenciesAccepted": "INR",
+  "hasMap": STORE_LOCATION.googleMapsUrl,
+  "sameAs": [SITE_URL]
+};
 
 
 function NotFoundComponent() {
@@ -85,6 +130,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", href: "/favicon.ico" },
       { rel: "stylesheet", href: appCss },
       { rel: "canonical", href: SITE_URL },
       { rel: "preconnect", href: "https://res.cloudinary.com" },
@@ -94,6 +141,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessSchema),
       },
     ],
   }),
@@ -124,8 +177,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CurtainLoader />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <ScrollToTop />
     </QueryClientProvider>
   );
 }

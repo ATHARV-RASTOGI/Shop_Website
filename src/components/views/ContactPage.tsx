@@ -1,14 +1,44 @@
 // src/components/views/ContactPage.tsx
-import { useState, Suspense, lazy } from "react";
+import { useState, useCallback, Suspense, lazy } from "react";
 import { ReactLenis } from "lenis/react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { useReveal } from "@/hooks/use-reveal";
 import { STORE_LOCATION } from "@/lib/constants";
 import { EnquireModal } from "@/components/ui/EnquireModal";
-import { MapPin, Phone, Mail, Clock, ExternalLink, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ExternalLink, Send, Check, Copy } from "lucide-react";
 
 const StoreMap = lazy(() => import("@/components/ui/StoreMap"));
+
+// Reusable copy-to-clipboard hook — shows tick for 1.5s then resets
+function useCopy() {
+  const [copied, setCopied] = useState(false);
+  const copy = useCallback((text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  }, []);
+  return { copied, copy };
+}
+
+// Small inline copy button — shows a check icon for 1.5s then resets
+function CopyButton({ text }: { text: string }) {
+  const { copied, copy } = useCopy();
+  return (
+    <button
+      onClick={() => copy(text)}
+      aria-label={copied ? "Copied!" : "Copy to clipboard"}
+      className="inline-flex items-center justify-center w-6 h-6 rounded-md text-foreground/30 hover:text-foreground/70 hover:bg-foreground/6 transition-colors duration-200 shrink-0"
+    >
+      {copied ? (
+        <Check className="w-3 h-3 text-primary" />
+      ) : (
+        <Copy className="w-3 h-3" />
+      )}
+    </button>
+  );
+}
 
 export function ContactPage() {
   useReveal();
@@ -67,11 +97,14 @@ export function ContactPage() {
                     <div className="p-2.5 rounded-full bg-background shrink-0 text-primary border border-border/40">
                       <Phone className="w-4 h-4" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="font-medium text-foreground">Telephone</p>
-                      <a href={`tel:${STORE_LOCATION.phone}`} className="text-foreground/60 hover:text-primary transition-colors mt-0.5 block">
-                        {STORE_LOCATION.phone}
-                      </a>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <a href={`tel:${STORE_LOCATION.phone}`} className="text-foreground/60 hover:text-primary transition-colors">
+                          {STORE_LOCATION.phone}
+                        </a>
+                        <CopyButton text={STORE_LOCATION.phone} />
+                      </div>
                     </div>
                   </div>
 
@@ -79,11 +112,14 @@ export function ContactPage() {
                     <div className="p-2.5 rounded-full bg-background shrink-0 text-primary border border-border/40">
                       <Mail className="w-4 h-4" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="font-medium text-foreground">Email</p>
-                      <a href={`mailto:${STORE_LOCATION.email}`} className="text-foreground/60 hover:text-primary transition-colors mt-0.5 block">
-                        {STORE_LOCATION.email}
-                      </a>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <a href={`mailto:${STORE_LOCATION.email}`} className="text-foreground/60 hover:text-primary transition-colors">
+                          {STORE_LOCATION.email}
+                        </a>
+                        <CopyButton text={STORE_LOCATION.email} />
+                      </div>
                     </div>
                   </div>
 
