@@ -87,7 +87,7 @@ export const getNecklaces = createServerFn({ method: 'GET' }).handler(async () =
       }))
       : [{
         id: 'fallback-necklace',
-        url: '/cat-necklaces.webp',
+        url: cld('Long_heavy_1'),
         alt: 'Necklaces Collection',
         title: 'Necklaces'
       }];
@@ -115,7 +115,7 @@ export const getFeatured = createServerFn({ method: 'GET' }).handler(async () =>
     const rawImages = (images || []) as ProductImage[];
     return {
       ...row,
-      image: rawImages.length > 0 ? cld(rawImages[0].public_id) : '/cat-rings.webp'
+      image: rawImages.length > 0 ? cld(rawImages[0].public_id) : cld('red-ring-1')
     };
   });
 });
