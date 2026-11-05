@@ -4,15 +4,17 @@ import { Menu, X, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const PRIMARY_LINKS = [
-  { label: "Rings",      href: "/rings" },
-  { label: "Earrings",   href: "/earings" },
-  { label: "Necklaces",  href: "/necklace" },
+  { label: "Rings", href: "/rings" },
+  { label: "Earrings", href: "/earings" },
+  { label: "Necklaces", href: "/necklace" },
+  { label: "Bracelets", href: "/bracelets" },
+  { label: "Coins", href: "/coins" },
 ];
 
 const SECONDARY_LINKS = [
-  { label: "Journal",    href: "/journal" },
-  { label: "About",      href: "/about" },
-  { label: "Contact",    href: "/contact" },
+  { label: "Journal", href: "/journal" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const ALL_LINKS = [...PRIMARY_LINKS, ...SECONDARY_LINKS];
@@ -34,10 +36,9 @@ export function Header() {
       <div
         className={cn(
           "max-w-[1400px] mx-auto px-6 lg:px-12 flex items-center justify-between transition-all duration-300",
-          isCondensed ? "h-12" : "h-16"
+          isCondensed ? "h-12" : "h-16",
         )}
       >
-        
         {/* Left — Back button on sub-pages, empty on home to preserve center alignment */}
         <div className="flex items-center gap-3 flex-1 min-w-[100px]">
           {!isHome && (
@@ -46,7 +47,14 @@ export function Header() {
               className="flex items-center gap-1.5 text-[11px] tracking-[0.16em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span className={cn("transition-opacity duration-300", isCondensed ? "opacity-0 hidden sm:inline" : "opacity-100")}>Home</span>
+              <span
+                className={cn(
+                  "transition-opacity duration-300",
+                  isCondensed ? "opacity-0 hidden sm:inline" : "opacity-100",
+                )}
+              >
+                Home
+              </span>
             </Link>
           )}
         </div>
@@ -56,7 +64,7 @@ export function Header() {
           to="/"
           className={cn(
             "absolute left-1/2 -translate-x-1/2 font-serif tracking-tight text-foreground select-none whitespace-nowrap transition-all duration-300",
-            isCondensed ? "text-base lg:text-lg" : "text-lg lg:text-2xl"
+            isCondensed ? "text-base lg:text-lg" : "text-lg lg:text-2xl",
           )}
         >
           K.K <span className="text-primary">Jewelers</span>
@@ -64,7 +72,6 @@ export function Header() {
 
         {/* Right — Desktop nav + Actions + Mobile hamburger */}
         <div className="flex items-center gap-6 flex-1 justify-end">
-          
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
             {ALL_LINKS.map((link) => (
@@ -89,10 +96,12 @@ export function Header() {
       </div>
 
       {/* Mobile Secondary Row for Primary Links */}
-      <div className={cn(
-        "lg:hidden flex items-center justify-center gap-8 border-t border-border/40 overflow-x-auto px-6 no-scrollbar transition-all duration-300",
-        isCondensed ? "h-10" : "h-12"
-      )}>
+      <div
+        className={cn(
+          "lg:hidden flex items-center justify-center gap-8 border-t border-border/40 overflow-x-auto px-6 no-scrollbar transition-all duration-300",
+          isCondensed ? "h-10" : "h-12",
+        )}
+      >
         {PRIMARY_LINKS.map((link) => (
           <Link
             key={link.href}
@@ -118,7 +127,7 @@ export function Header() {
             </Link>
           ))}
           <div className="px-6 py-4 text-[12px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors">
-             <button onClick={() => setMenuOpen(false)}>Search</button>
+            <button onClick={() => setMenuOpen(false)}>Search</button>
           </div>
         </nav>
       )}

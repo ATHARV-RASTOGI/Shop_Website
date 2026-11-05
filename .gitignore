@@ -53,3 +53,4 @@ Desktop.ini
 *.sw?
 .env
 .env.local
+.agents/*

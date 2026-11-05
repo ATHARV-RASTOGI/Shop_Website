@@ -46,7 +46,7 @@ export function Hero({ product }: { product?: any }) {
           >
             <div>
               <dt className="eyebrow">Open Since</dt>
-              <dd className="mt-2 font-serif text-2xl"> 19-- </dd>
+              <dd className="mt-2 font-serif text-2xl"> 1940 </dd>
             </div>
           </dl>
         </div>

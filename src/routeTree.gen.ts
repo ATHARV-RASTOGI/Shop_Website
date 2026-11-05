@@ -11,12 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as BraceletsRouteImport } from './routes/bracelets'
+import { Route as CoinsRouteImport } from './routes/coins'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EaringsRouteImport } from './routes/earings'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as NecklaceRouteImport } from './routes/necklace'
 import { Route as RingsRouteImport } from './routes/rings'
 import { Route as WorkshopRouteImport } from './routes/workshop'
+import { Route as CoinsIndexRouteImport } from './routes/coins/index'
+import { Route as CoinsGoldRouteImport } from './routes/coins/gold'
+import { Route as CoinsSilverRouteImport } from './routes/coins/silver'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -26,6 +31,16 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BraceletsRoute = BraceletsRouteImport.update({
+  id: '/bracelets',
+  path: '/bracelets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoinsRoute = CoinsRouteImport.update({
+  id: '/coins',
+  path: '/coins',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -58,74 +73,119 @@ const WorkshopRoute = WorkshopRouteImport.update({
   path: '/workshop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoinsIndexRoute = CoinsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CoinsRoute,
+} as any)
+const CoinsGoldRoute = CoinsGoldRouteImport.update({
+  id: '/gold',
+  path: '/gold',
+  getParentRoute: () => CoinsRoute,
+} as any)
+const CoinsSilverRoute = CoinsSilverRouteImport.update({
+  id: '/silver',
+  path: '/silver',
+  getParentRoute: () => CoinsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bracelets': typeof BraceletsRoute
+  '/coins': typeof CoinsRouteWithChildren
   '/contact': typeof ContactRoute
   '/earings': typeof EaringsRoute
   '/journal': typeof JournalRoute
   '/necklace': typeof NecklaceRoute
   '/rings': typeof RingsRoute
   '/workshop': typeof WorkshopRoute
+  '/coins/gold': typeof CoinsGoldRoute
+  '/coins/silver': typeof CoinsSilverRoute
+  '/coins/': typeof CoinsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bracelets': typeof BraceletsRoute
   '/contact': typeof ContactRoute
   '/earings': typeof EaringsRoute
   '/journal': typeof JournalRoute
   '/necklace': typeof NecklaceRoute
   '/rings': typeof RingsRoute
   '/workshop': typeof WorkshopRoute
+  '/coins/gold': typeof CoinsGoldRoute
+  '/coins/silver': typeof CoinsSilverRoute
+  '/coins': typeof CoinsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/bracelets': typeof BraceletsRoute
+  '/coins': typeof CoinsRouteWithChildren
   '/contact': typeof ContactRoute
   '/earings': typeof EaringsRoute
   '/journal': typeof JournalRoute
   '/necklace': typeof NecklaceRoute
   '/rings': typeof RingsRoute
   '/workshop': typeof WorkshopRoute
+  '/coins/gold': typeof CoinsGoldRoute
+  '/coins/silver': typeof CoinsSilverRoute
+  '/coins/': typeof CoinsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/bracelets'
+    | '/coins'
     | '/contact'
     | '/earings'
     | '/journal'
     | '/necklace'
     | '/rings'
     | '/workshop'
+    | '/coins/gold'
+    | '/coins/silver'
+    | '/coins/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/bracelets'
     | '/contact'
     | '/earings'
     | '/journal'
     | '/necklace'
     | '/rings'
     | '/workshop'
+    | '/coins/gold'
+    | '/coins/silver'
+    | '/coins'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/bracelets'
+    | '/coins'
     | '/contact'
     | '/earings'
     | '/journal'
     | '/necklace'
     | '/rings'
     | '/workshop'
+    | '/coins/gold'
+    | '/coins/silver'
+    | '/coins/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BraceletsRoute: typeof BraceletsRoute
+  CoinsRoute: typeof CoinsRouteWithChildren
   ContactRoute: typeof ContactRoute
   EaringsRoute: typeof EaringsRoute
   JournalRoute: typeof JournalRoute
@@ -148,6 +208,20 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bracelets': {
+      id: '/bracelets'
+      path: '/bracelets'
+      fullPath: '/bracelets'
+      preLoaderRoute: typeof BraceletsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coins': {
+      id: '/coins'
+      path: '/coins'
+      fullPath: '/coins'
+      preLoaderRoute: typeof CoinsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -192,12 +266,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkshopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coins/': {
+      id: '/coins/'
+      path: '/'
+      fullPath: '/coins/'
+      preLoaderRoute: typeof CoinsIndexRouteImport
+      parentRoute: typeof CoinsRoute
+    }
+    '/coins/gold': {
+      id: '/coins/gold'
+      path: '/gold'
+      fullPath: '/coins/gold'
+      preLoaderRoute: typeof CoinsGoldRouteImport
+      parentRoute: typeof CoinsRoute
+    }
+    '/coins/silver': {
+      id: '/coins/silver'
+      path: '/silver'
+      fullPath: '/coins/silver'
+      preLoaderRoute: typeof CoinsSilverRouteImport
+      parentRoute: typeof CoinsRoute
+    }
   }
 }
+
+interface CoinsRouteChildren {
+  CoinsGoldRoute: typeof CoinsGoldRoute
+  CoinsSilverRoute: typeof CoinsSilverRoute
+  CoinsIndexRoute: typeof CoinsIndexRoute
+}
+
+const CoinsRouteChildren: CoinsRouteChildren = {
+  CoinsGoldRoute: CoinsGoldRoute,
+  CoinsSilverRoute: CoinsSilverRoute,
+  CoinsIndexRoute: CoinsIndexRoute,
+}
+
+const CoinsRouteWithChildren = CoinsRoute._addFileChildren(CoinsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BraceletsRoute: BraceletsRoute,
+  CoinsRoute: CoinsRouteWithChildren,
   ContactRoute: ContactRoute,
   EaringsRoute: EaringsRoute,
   JournalRoute: JournalRoute,

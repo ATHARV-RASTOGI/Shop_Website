@@ -25,8 +25,10 @@ export const STORE_LOCATION = {
     { days: "Monday – Saturday", time: "10:30 AM – 7:30 PM" },
     { days: "Sunday", time: "By Appointment" },
   ],
-  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=27.391009853631893,79.57995851210842",
-  googleMapsDirUrl: "https://www.google.com/maps/dir/?api=1&destination=27.391009853631893,79.57995851210842",
+  googleMapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=27.391009853631893,79.57995851210842",
+  googleMapsDirUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=27.391009853631893,79.57995851210842",
 };
 
 // ─── SEO — Page Titles & Descriptions ────────────────────────────
@@ -55,8 +57,7 @@ export const SEO = {
     description:
       "Discover the story behind K.K Jewelers. Rooted in Farrukhabad's rich jewellery-making tradition, we blend heritage artisanship with modern design to create timeless pieces.",
     ogTitle: "Our Heritage & Craftsmanship — K.K Jewelers",
-    ogDescription:
-      "Traditional craftsmanship meets modern elegance. Learn the K.K Jewelers story.",
+    ogDescription: "Traditional craftsmanship meets modern elegance. Learn the K.K Jewelers story.",
   },
 
   /** Rings collection: /rings */
@@ -85,8 +86,46 @@ export const SEO = {
     description:
       "Explore our gold earrings — jhumkas, studs, hoops, and modern drops. Each pair is handcrafted with hallmarked gold by our master karigars at K.K Jewelers.",
     ogTitle: "Gold Earrings — K.K Jewelers Collection",
+    ogDescription: "Traditional and contemporary gold earrings, handcrafted at K.K Jewelers.",
+  },
+
+  /** Bracelets collection: /bracelets */
+  bracelets: {
+    title: "Gold Bracelets & Kadas Collection — Hallmarked 22K & 18K | K.K Jewelers",
+    description:
+      "Browse our handcrafted hallmarked gold bracelets, bespoke diamond kadas, and delicate cuffs at K.K Jewelers.",
+    ogTitle: "Gold Bracelets & Kadas — K.K Jewelers Collection",
+    ogDescription: "Handcrafted hallmarked gold bracelets, heritage kadas, and contemporary cuffs.",
+  },
+
+  /** Coins collection overview: /coins */
+  coins: {
+    title: "Gold Coins (Ginnis) & Silver Dollar Notes | K.K Jewelers",
+    description:
+      "Explore certified 24K pure hallmarked gold coins (ginnis) in 1g, 2g, 5g and 999 fine silver dollar notes at K.K Jewelers, Farrukhabad.",
+    ogTitle: "Gold Coins & Silver Dollar Notes — K.K Jewelers",
     ogDescription:
-      "Traditional and contemporary gold earrings, handcrafted at K.K Jewelers.",
+      "24K pure gold coins (ginnis) and 999 fine silver dollar notes handcrafted and assayed at K.K Jewelers.",
+  },
+
+  /** Gold Coins subpage: /coins/gold */
+  coinsGold: {
+    title: "24K Gold Coins (Ginnis) Collection — 1g, 2g, 5g | K.K Jewelers",
+    description:
+      "Explore certified 24K pure BIS hallmarked gold coins (ginnis) in 1g, 2g, and 5g minted weights at K.K Jewelers, Farrukhabad.",
+    ogTitle: "24K Gold Coins (Ginnis) Collection — K.K Jewelers",
+    ogDescription:
+      "Certified 24K pure gold coins (ginnis) in 1g, 2g, and 5g weights by K.K Jewelers.",
+  },
+
+  /** Silver Dollar Notes subpage: /coins/silver */
+  coinsSilver: {
+    title: "999 Fine Silver Dollar Notes & Bullion | K.K Jewelers",
+    description:
+      "Explore certified 999 fine silver dollar notes and currency bullion ingots across varying weights at K.K Jewelers, Farrukhabad.",
+    ogTitle: "999 Fine Silver Dollar Notes — K.K Jewelers",
+    ogDescription:
+      "Precision-etched 999 fine silver dollar notes and assayed bullion ingots at K.K Jewelers.",
   },
 
   /** Contact page: /contact */
@@ -95,8 +134,7 @@ export const SEO = {
     description:
       "Get in touch with K.K Jewelers in Farrukhabad. Visit our showroom or enquire about custom  jewellery.",
     ogTitle: "Contact Us — K.K Jewelers",
-    ogDescription:
-      "Visit our Farrukhabad showroom or send a custom jewellery enquiry.",
+    ogDescription: "Visit our Farrukhabad showroom or send a custom jewellery enquiry.",
   },
 
   /** Journal — Care guide: /journal */
