@@ -21,7 +21,7 @@ export function Categories() {
             <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 block font-sans">
               Collection · 01
             </span>
-            <h3 className="font-serif text-2xl lg:text-3xl text-white font-light tracking-wide">
+            <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-light tracking-wide">
               Gold Rings
             </h3>
           </div>
@@ -41,7 +41,7 @@ export function Categories() {
             <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 block font-sans">
               Collection · 02
             </span>
-            <h3 className="font-serif text-2xl lg:text-3xl text-white font-light tracking-wide">
+            <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-light tracking-wide">
               Necklaces
             </h3>
           </div>
@@ -61,7 +61,7 @@ export function Categories() {
             <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 block font-sans">
               Collection · 03
             </span>
-            <h3 className="font-serif text-2xl lg:text-3xl text-white font-light tracking-wide">
+            <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-light tracking-wide">
               Gold Earrings
             </h3>
           </div>
@@ -81,7 +81,7 @@ export function Categories() {
             <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 block font-sans">
               Collection · 04
             </span>
-            <h3 className="font-serif text-2xl lg:text-3xl text-white font-light tracking-wide">
+            <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-light tracking-wide">
               Bracelets & Kadas
             </h3>
           </div>
@@ -101,7 +101,7 @@ export function Categories() {
             <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 block font-sans">
               Investment Bullion
             </span>
-            <h3 className="font-serif text-2xl lg:text-3xl text-white font-light tracking-wide">
+            <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-light tracking-wide">
               24K Gold Coins
             </h3>
           </div>
@@ -121,7 +121,7 @@ export function Categories() {
             <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 block font-sans">
               Tradition · Since 1940
             </span>
-            <h3 className="font-serif text-2xl lg:text-3xl text-white font-light tracking-wide">
+            <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-light tracking-wide">
               Temple & Heritage
             </h3>
           </div>
@@ -141,7 +141,7 @@ export function Categories() {
             <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 block font-sans">
               Atelier Workshop
             </span>
-            <h3 className="font-serif text-2xl lg:text-3xl text-white font-light tracking-wide">
+            <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-light tracking-wide">
               Bespoke Creations
             </h3>
           </div>
@@ -173,7 +173,7 @@ export function Categories() {
       <div className="w-full">
         <SqueezeCarousel
           slides={slides}
-          height="clamp(280px, 34vw, 400px)"
+          height="clamp(220px, 32vw, 380px)"
           accent="var(--burgundy)"
           accentForeground="var(--cream)"
           radius="12px"

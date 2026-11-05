@@ -327,11 +327,39 @@ export function SqueezeCarousel({
     step(by);
   };
 
+  /* --- touch gestures --------------------------------------------------- */
+
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length !== 1) return;
+    touchStart.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStart.current) return;
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - touchStart.current.x;
+    const dy = touch.clientY - touchStart.current.y;
+    touchStart.current = null;
+
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 36) {
+      if (dx < 0) {
+        step(1);
+      } else {
+        step(-1);
+      }
+    }
+  };
+
   if (!count) return null;
 
   /* --- render ----------------------------------------------------------- */
 
-  const slat = size(slatWidth);
+  const slat = "var(--sq-slat-w, 8px)";
   const shares = hoverGrow && hover >= 0 && hover <= 3 && !reduced ? null : SHARES;
 
   /** The share a column takes, once the pointer has had its say. */
@@ -347,20 +375,31 @@ export function SqueezeCarousel({
     return `calc(var(--sq-room) * ${shareOf(col)})`;
   };
 
+  const gapValue = typeof gap === "number" ? `clamp(8px, 1.8cqi, ${gap}px)` : size(gap);
+  const slatGapValue = typeof slatGap === "number" ? `clamp(5px, 1.2cqi, ${slatGap}px)` : size(slatGap);
+  const slatWidthValue = typeof slatWidth === "number" ? `clamp(5px, 1.2cqi, ${slatWidth}px)` : size(slatWidth);
+
   const vars = {
     "--sq-h": size(height),
-    "--sq-gap": size(gap),
-    "--sq-slat-gap": size(slatGap),
+    "--sq-gap": gapValue,
+    "--sq-slat-gap": slatGapValue,
+    "--sq-slat-w": slatWidthValue,
     "--sq-radius": size(radius),
     "--sq-ms": `${ms}ms`,
     // easeOutExpo, the curve the original slides on
     "--sq-ease": "cubic-bezier(0.16, 1, 0.3, 1)",
     "--sq-fill": accent,
     "--sq-on-fill": accentForeground,
-    // A 16:9 block sets both the open card and the size every picture is
-    // drawn at, so a picture keeps one scale however narrow its card gets.
-    "--sq-hero": "calc(var(--sq-h) * 16 / 9)",
-    "--sq-room": `calc(100cqi - var(--sq-hero) - ${slats} * var(--sq-slat-gap) - 3 * var(--sq-gap) - ${slats} * ${slat})`,
+    // Total space consumed by inter-column gaps, slat gaps, and slats:
+    "--sq-overhead": `calc(${slats} * var(--sq-slat-gap) + 3 * var(--sq-gap) + ${slats} * var(--sq-slat-w))`,
+    // Available width for the active card and the 3 secondary columns:
+    "--sq-avail": "calc(100cqi - var(--sq-overhead))",
+    // Minimum guaranteed room for the 3 secondary columns so they never collapse on mobile:
+    "--sq-min-room": "min(clamp(72px, 26cqi, 260px), calc(var(--sq-avail) * 0.38))",
+    // Hero width: uses 16:9 widescreen on desktop, capped cleanly on mobile/tablet:
+    "--sq-hero": "min(calc(var(--sq-h) * 16 / 9), calc(var(--sq-avail) - var(--sq-min-room)))",
+    // Remaining space distributed among columns 1, 2, 3:
+    "--sq-room": "max(0px, calc(var(--sq-avail) - var(--sq-hero)))",
   } as CSSProperties;
 
   const move = `translateX(calc(${slid} * (${slat} + var(--sq-gap))))`;
@@ -394,7 +433,12 @@ export function SqueezeCarousel({
         </div>
       )}
 
-      <div className="w-full overflow-hidden" style={{ height: "var(--sq-h)" }}>
+      <div
+        className="w-full overflow-hidden touch-pan-y select-none"
+        style={{ height: "var(--sq-h)" }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <div
           ref={strip}
           role="tablist"
@@ -444,11 +488,11 @@ export function SqueezeCarousel({
                 {slide.overlay && (
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end p-4 pt-16 @lg:p-6 @lg:pt-20"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end p-3.5 sm:p-4 pt-12 sm:pt-16 @lg:p-6 @lg:pt-20"
                     style={{
                       opacity: front ? 1 : 0,
                       transition: `opacity var(--sq-ms) var(--sq-ease)`,
-                      backgroundImage: "linear-gradient(to top, rgb(0 0 0 / 0.55), transparent)",
+                      backgroundImage: "linear-gradient(to top, rgb(0 0 0 / 0.65), transparent)",
                     }}
                   >
                     {slide.overlay}
@@ -460,7 +504,7 @@ export function SqueezeCarousel({
         </div>
       </div>
 
-      <div id={`${ids}-panel`} role="tabpanel" aria-live="polite" className="mt-6 grid @xl:mt-7">
+      <div id={`${ids}-panel`} role="tabpanel" aria-live="polite" className="mt-5 grid @xl:mt-7">
         {slides.map((slide, i) => {
           const shown = i === open;
 
@@ -469,7 +513,7 @@ export function SqueezeCarousel({
               key={slide.id ?? i}
               aria-hidden={!shown}
               className={cn(
-                "col-start-1 row-start-1 flex flex-col gap-4",
+                "col-start-1 row-start-1 flex flex-col gap-3 sm:gap-4",
                 "@xl:flex-row @xl:items-start @xl:justify-between @xl:gap-10",
               )}
               style={{
@@ -479,8 +523,8 @@ export function SqueezeCarousel({
                 transition: `opacity var(--sq-ms) var(--sq-ease), visibility var(--sq-ms)`,
               }}
             >
-              <p className="max-w-[46rem] text-[15px] leading-[1.6] text-balance @lg:text-[17px]">
-                <span className="text-foreground">{slide.title}</span>{" "}
+              <p className="max-w-[46rem] text-sm sm:text-[15px] leading-[1.6] text-balance @lg:text-[17px]">
+                <span className="text-foreground font-medium">{slide.title}</span>{" "}
                 {slide.description && (
                   <span className="text-muted-foreground">{slide.description}</span>
                 )}
@@ -593,7 +637,7 @@ function Action({ slide, shown }: { slide: SqueezeSlide; shown: boolean }) {
   );
 
   const dress = cn(
-    "group/sq-action inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-md",
+    "group/sq-action inline-flex shrink-0 w-fit cursor-pointer items-center gap-2 rounded-md",
     "bg-[var(--sq-fill)] px-4 py-2.5 text-sm font-medium text-[var(--sq-on-fill)]",
     "transition-opacity hover:opacity-85 outline-none",
     "focus-visible:ring-2 focus-visible:ring-[var(--sq-fill)]",
