@@ -98,7 +98,7 @@ export function Header() {
       {/* Mobile Secondary Row for Primary Links */}
       <div
         className={cn(
-          "lg:hidden flex items-center justify-center gap-8 border-t border-border/40 overflow-x-auto px-6 no-scrollbar transition-all duration-300",
+          "lg:hidden flex items-center justify-start md:justify-center gap-6 sm:gap-8 border-t border-border/40 overflow-x-auto px-6 hide-scrollbar transition-all duration-300",
           isCondensed ? "h-10" : "h-12",
         )}
       >
@@ -106,7 +106,7 @@ export function Header() {
           <Link
             key={link.href}
             to={link.href}
-            className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors duration-200 [&.active]:text-foreground [&.active]:border-b [&.active]:border-foreground/40 pb-px"
+            className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground whitespace-nowrap shrink-0 transition-colors duration-200 [&.active]:text-foreground [&.active]:border-b [&.active]:border-foreground/40 pb-px"
           >
             {link.label}
           </Link>
