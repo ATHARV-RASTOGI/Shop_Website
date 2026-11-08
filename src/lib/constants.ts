@@ -7,7 +7,7 @@
 // ─────────────────────────────────────────────────────────────────
 
 /** Your Vercel URL (update this when you purchase a custom domain) */
-export const SITE_URL = "https://kk-jewelers.vercel.app";
+export const SITE_URL = "https://kk-jewellers-fbd.vercel.app";
 
 /** Default OG image shown when a page is shared on social media */
 export const OG_IMAGE =
